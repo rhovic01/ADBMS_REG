@@ -68,7 +68,29 @@ Partial Class Form1
         Me.Label22 = New System.Windows.Forms.Label()
         Me.cboCOURSE = New System.Windows.Forms.ComboBox()
         Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.id = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.lname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.fname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.mname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.year_level = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.course = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.date_added = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.birthdate = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.contact_no = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.street = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.brgy = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.municipality = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.province = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.zip_code = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.g_lname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.g_fname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.g_mname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.g_occupation = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.g_contact = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.searchTxtbox = New System.Windows.Forms.TextBox()
+        Me.filterbycombo = New System.Windows.Forms.ComboBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnEX
@@ -521,30 +543,137 @@ Partial Class Form1
         '
         'ListView1
         '
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.id})
-        Me.ListView1.Enabled = False
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.lname, Me.fname, Me.mname, Me.year_level, Me.course, Me.date_added, Me.birthdate, Me.contact_no, Me.street, Me.brgy, Me.municipality, Me.province, Me.zip_code, Me.g_lname, Me.g_fname, Me.g_mname, Me.g_occupation, Me.g_contact, Me.ColumnHeader1})
         Me.ListView1.FullRowSelect = True
         Me.ListView1.GridLines = True
         Me.ListView1.HideSelection = False
-        Me.ListView1.Location = New System.Drawing.Point(396, 758)
+        Me.ListView1.Location = New System.Drawing.Point(133, 763)
         Me.ListView1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(628, 78)
+        Me.ListView1.Size = New System.Drawing.Size(981, 370)
         Me.ListView1.TabIndex = 89
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
         '
-        'id
+        'lname
         '
-        Me.id.Text = "id"
-        Me.id.Width = 38
+        Me.lname.Text = "lname"
+        '
+        'fname
+        '
+        Me.fname.Text = "fname"
+        '
+        'mname
+        '
+        Me.mname.Text = "mname"
+        '
+        'year_level
+        '
+        Me.year_level.Text = "year_level"
+        '
+        'course
+        '
+        Me.course.Text = "course"
+        '
+        'date_added
+        '
+        Me.date_added.Text = "date_added"
+        '
+        'birthdate
+        '
+        Me.birthdate.Text = "birthdate"
+        '
+        'contact_no
+        '
+        Me.contact_no.Text = "contact_no"
+        '
+        'street
+        '
+        Me.street.Text = "street"
+        '
+        'brgy
+        '
+        Me.brgy.Text = "brgy"
+        '
+        'municipality
+        '
+        Me.municipality.Text = "municipality"
+        '
+        'province
+        '
+        Me.province.Text = "province"
+        '
+        'zip_code
+        '
+        Me.zip_code.Text = "zip_code"
+        '
+        'g_lname
+        '
+        Me.g_lname.Text = "g_lname"
+        '
+        'g_fname
+        '
+        Me.g_fname.Text = "g_fname"
+        '
+        'g_mname
+        '
+        Me.g_mname.Text = "g_mname"
+        '
+        'g_occupation
+        '
+        Me.g_occupation.Text = "g_occupation"
+        '
+        'g_contact
+        '
+        Me.g_contact.Text = "g_contact"
+        '
+        'searchTxtbox
+        '
+        Me.searchTxtbox.Location = New System.Drawing.Point(985, 734)
+        Me.searchTxtbox.Name = "searchTxtbox"
+        Me.searchTxtbox.Size = New System.Drawing.Size(129, 22)
+        Me.searchTxtbox.TabIndex = 90
+        '
+        'filterbycombo
+        '
+        Me.filterbycombo.FormattingEnabled = True
+        Me.filterbycombo.Items.AddRange(New Object() {"LAST NAME", "COURSE", "YEAR LEVEL", "MUNICIPALITY"})
+        Me.filterbycombo.Location = New System.Drawing.Point(714, 734)
+        Me.filterbycombo.Name = "filterbycombo"
+        Me.filterbycombo.Size = New System.Drawing.Size(121, 24)
+        Me.filterbycombo.TabIndex = 91
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label23.Font = New System.Drawing.Font("Modern No. 20", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(874, 734)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(83, 22)
+        Me.Label23.TabIndex = 92
+        Me.Label23.Text = "SEARCH:"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label24.Font = New System.Drawing.Font("Modern No. 20", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(600, 736)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(108, 22)
+        Me.Label24.TabIndex = 93
+        Me.Label24.Text = "FILTER BY:"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1268, 840)
-        Me.ControlBox = False
+        Me.Controls.Add(Me.Label24)
+        Me.Controls.Add(Me.Label23)
+        Me.Controls.Add(Me.filterbycombo)
+        Me.Controls.Add(Me.searchTxtbox)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.cboCOURSE)
         Me.Controls.Add(Me.Label22)
@@ -591,10 +720,7 @@ Partial Class Form1
         Me.Controls.Add(Me.label3)
         Me.Controls.Add(Me.label2)
         Me.Controls.Add(Me.label1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "Form1"
         Me.Text = "REGISTRATION"
         Me.ResumeLayout(False)
@@ -648,5 +774,27 @@ Partial Class Form1
     Private WithEvents Label22 As Label
     Private WithEvents cboCOURSE As ComboBox
     Friend WithEvents ListView1 As ListView
-    Friend WithEvents id As ColumnHeader
+    Friend WithEvents lname As ColumnHeader
+    Friend WithEvents fname As ColumnHeader
+    Friend WithEvents mname As ColumnHeader
+    Friend WithEvents year_level As ColumnHeader
+    Friend WithEvents course As ColumnHeader
+    Friend WithEvents date_added As ColumnHeader
+    Friend WithEvents birthdate As ColumnHeader
+    Friend WithEvents contact_no As ColumnHeader
+    Friend WithEvents street As ColumnHeader
+    Friend WithEvents brgy As ColumnHeader
+    Friend WithEvents municipality As ColumnHeader
+    Friend WithEvents province As ColumnHeader
+    Friend WithEvents zip_code As ColumnHeader
+    Friend WithEvents g_lname As ColumnHeader
+    Friend WithEvents g_fname As ColumnHeader
+    Friend WithEvents g_mname As ColumnHeader
+    Friend WithEvents g_occupation As ColumnHeader
+    Friend WithEvents g_contact As ColumnHeader
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents searchTxtbox As TextBox
+    Friend WithEvents filterbycombo As ComboBox
+    Private WithEvents Label23 As Label
+    Private WithEvents Label24 As Label
 End Class

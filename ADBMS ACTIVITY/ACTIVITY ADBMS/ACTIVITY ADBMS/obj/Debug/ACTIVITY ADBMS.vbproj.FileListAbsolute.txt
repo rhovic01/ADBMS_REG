@@ -16,7 +16,6 @@ C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\bin\Debug\
 C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\bin\Debug\ACTIVITY ADBMS.xml
 C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\bin\Debug\MySql.Data.dll
 C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\obj\Debug\ACTIVITY ADBMS.vbproj.AssemblyReference.cache
-C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\obj\Debug\ACTIVITY ADBMS.vbproj.ResolveComReference.cache
 C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\obj\Debug\ACTIVITY_ADBMS.Form1.resources
 C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\obj\Debug\ACTIVITY_ADBMS.Resources.resources
 C:\Users\rhovi\Downloads\ADBMS ACTIVITY\ACTIVITY ADBMS\ACTIVITY ADBMS\obj\Debug\ACTIVITY ADBMS.vbproj.GenerateResource.cache
