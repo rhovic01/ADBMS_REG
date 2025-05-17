@@ -82,36 +82,57 @@ Public Class Form1
             MsgBox("Enter guardian contact number", vbInformation, "Missing")
             txtGNUM.Focus()
             Exit Sub
+        ElseIf txtEMAIL.Text = "" Then
+            MsgBox("Enter email", vbInformation, "Missing")
+            txtEMAIL.Focus()
+            Exit Sub
+        ElseIf txtHS.Text = "" Then
+            MsgBox("Enter high school", vbInformation, "Missing")
+            txtHS.Focus()
+            Exit Sub
+        ElseIf txtCOLL.Text = "" Then
+            MsgBox("Enter college", vbInformation, "Missing")
+            txtCOLL.Focus()
+            Exit Sub
+        ElseIf txtYG.Text = "" Then
+            MsgBox("Enter year graduated", vbInformation, "Missing")
+            txtYG.Focus()
+            Exit Sub
+        ElseIf txtSY.Text = "" Then
+            MsgBox("Enter school year", vbInformation, "Missing")
+            txtSY.Focus()
+            Exit Sub
         End If
 
-        ' Check for duplicate student (optional - you might want to add this)
-        ' Then proceed with saving the record
         Using conn As OleDbConnection = CreateConnection()
             Using cmd As New OleDbCommand()
                 Try
                     conn.Open()
-                    Dim query As String = "INSERT INTO students (lname, fname, mname, year_level, course, date_added, birthdate, contact_no, street, brgy, municipality, province, zip_code, g_lname, g_fname, g_mname, g_occupation, g_contact) " &
-                                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    Dim query As String = "INSERT INTO students " &
+                        "(lname, fname, mname, year_level, course, date_added, birthdate, contact_no, street, brgy, municipality, province, zip_code, " &
+                        "g_lname, g_fname, g_mname, g_occupation, g_contact, email, highschool, college, yeargraduate, school_year) " &
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+
                     cmd.Connection = conn
                     cmd.CommandText = query
 
-                    With cmd.Parameters
-                        ' Convert all text inputs to uppercase before inserting
-                        txtLNAME.Text = txtLNAME.Text.ToUpper()
-                        txtFNAME.Text = txtFNAME.Text.ToUpper()
-                        txtMNAME.Text = txtMNAME.Text.ToUpper()
-                        txtCN.Text = txtCN.Text.ToUpper()
-                        txtSTREET.Text = txtSTREET.Text.ToUpper()
-                        txtBRGY.Text = txtBRGY.Text.ToUpper()
-                        txtMUNI.Text = txtMUNI.Text.ToUpper()
-                        txtPROV.Text = txtPROV.Text.ToUpper()
-                        txtZIP.Text = txtZIP.Text.ToUpper()
-                        txtGNAME.Text = txtGNAME.Text.ToUpper()
-                        txtGFNAME.Text = txtGFNAME.Text.ToUpper()
-                        txtGMNAME.Text = txtGMNAME.Text.ToUpper()
-                        txtOCC.Text = txtOCC.Text.ToUpper()
-                        txtGNUM.Text = txtGNUM.Text.ToUpper()
+                    ' Convert all text inputs to uppercase before inserting except email which remains as is
+                    txtLNAME.Text = txtLNAME.Text.ToUpper()
+                    txtFNAME.Text = txtFNAME.Text.ToUpper()
+                    txtMNAME.Text = txtMNAME.Text.ToUpper()
+                    txtCN.Text = txtCN.Text.ToUpper()
+                    txtSTREET.Text = txtSTREET.Text.ToUpper()
+                    txtBRGY.Text = txtBRGY.Text.ToUpper()
+                    txtMUNI.Text = txtMUNI.Text.ToUpper()
+                    txtPROV.Text = txtPROV.Text.ToUpper()
+                    txtZIP.Text = txtZIP.Text.ToUpper()
+                    txtGNAME.Text = txtGNAME.Text.ToUpper()
+                    txtGFNAME.Text = txtGFNAME.Text.ToUpper()
+                    txtGMNAME.Text = txtGMNAME.Text.ToUpper()
+                    txtOCC.Text = txtOCC.Text.ToUpper()
+                    txtGNUM.Text = txtGNUM.Text.ToUpper()
 
+                    With cmd.Parameters
                         .AddWithValue("@lname", txtLNAME.Text)
                         .AddWithValue("@fname", txtFNAME.Text)
                         .AddWithValue("@mname", txtMNAME.Text)
@@ -130,6 +151,11 @@ Public Class Form1
                         .AddWithValue("@gmname", txtGMNAME.Text)
                         .AddWithValue("@occ", txtOCC.Text)
                         .AddWithValue("@gnum", txtGNUM.Text)
+                        .AddWithValue("@email", txtEMAIL.Text)             ' email case maintained
+                        .AddWithValue("@highschool", txtHS.Text.ToUpper())
+                        .AddWithValue("@college", txtCOLL.Text.ToUpper())
+                        .AddWithValue("@yeargraduate", txtYG.Text.ToUpper())
+                        .AddWithValue("@school_year", txtSY.Text.ToUpper())
                     End With
 
                     cmd.ExecuteNonQuery()
@@ -197,9 +223,28 @@ Public Class Form1
             MsgBox("Enter contact number", vbInformation, "Missing")
             txtCN.Focus()
             Exit Sub
+        ElseIf txtEMAIL.Text = "" Then
+            MsgBox("Enter email", vbInformation, "Missing")
+            txtEMAIL.Focus()
+            Exit Sub
+        ElseIf txtHS.Text = "" Then
+            MsgBox("Enter high school", vbInformation, "Missing")
+            txtHS.Focus()
+            Exit Sub
+        ElseIf txtCOLL.Text = "" Then
+            MsgBox("Enter college", vbInformation, "Missing")
+            txtCOLL.Focus()
+            Exit Sub
+        ElseIf txtYG.Text = "" Then
+            MsgBox("Enter year graduated", vbInformation, "Missing")
+            txtYG.Focus()
+            Exit Sub
+        ElseIf txtSY.Text = "" Then
+            MsgBox("Enter school year", vbInformation, "Missing")
+            txtSY.Focus()
+            Exit Sub
         End If
 
-        ' Confirmation before updating
         If MsgBox("Do you really want to update this student record?", vbQuestion + vbYesNo, "Update") = vbNo Then
             Exit Sub
         End If
@@ -208,46 +253,51 @@ Public Class Form1
             Using cmd As New OleDbCommand()
                 Try
                     conn.Open()
-                    Dim query As String = "UPDATE students SET fname=?, mname=?, year_level=?, birthdate=?, contact_no=? WHERE lname=?"
+                    Dim query As String = "UPDATE students SET fname=?, mname=?, year_level=?, birthdate=?, contact_no=?, email=?, highschool=?, college=?, yeargraduate=?, school_year=? WHERE lname=?"
+
                     cmd.Connection = conn
                     cmd.CommandText = query
 
-                    With cmd.Parameters
-                        ' Convert all text inputs to uppercase before updating
-                        txtLNAME.Text = txtLNAME.Text.ToUpper()
-                        txtFNAME.Text = txtFNAME.Text.ToUpper()
-                        txtMNAME.Text = txtMNAME.Text.ToUpper()
-                        txtCN.Text = txtCN.Text.ToUpper()
-                        txtSTREET.Text = txtSTREET.Text.ToUpper()
-                        txtBRGY.Text = txtBRGY.Text.ToUpper()
-                        txtMUNI.Text = txtMUNI.Text.ToUpper()
-                        txtPROV.Text = txtPROV.Text.ToUpper()
-                        txtZIP.Text = txtZIP.Text.ToUpper()
-                        txtGNAME.Text = txtGNAME.Text.ToUpper()
-                        txtGFNAME.Text = txtGFNAME.Text.ToUpper()
-                        txtGMNAME.Text = txtGMNAME.Text.ToUpper()
-                        txtOCC.Text = txtOCC.Text.ToUpper()
-                        txtGNUM.Text = txtGNUM.Text.ToUpper()
+                    ' Convert all inputs except email to uppercase before updating
+                    txtLNAME.Text = txtLNAME.Text.ToUpper()
+                    txtFNAME.Text = txtFNAME.Text.ToUpper()
+                    txtMNAME.Text = txtMNAME.Text.ToUpper()
+                    txtCN.Text = txtCN.Text.ToUpper()
+                    txtSTREET.Text = txtSTREET.Text.ToUpper()
+                    txtBRGY.Text = txtBRGY.Text.ToUpper()
+                    txtMUNI.Text = txtMUNI.Text.ToUpper()
+                    txtPROV.Text = txtPROV.Text.ToUpper()
+                    txtZIP.Text = txtZIP.Text.ToUpper()
+                    txtGNAME.Text = txtGNAME.Text.ToUpper()
+                    txtGFNAME.Text = txtGFNAME.Text.ToUpper()
+                    txtGMNAME.Text = txtGMNAME.Text.ToUpper()
+                    txtOCC.Text = txtOCC.Text.ToUpper()
+                    txtGNUM.Text = txtGNUM.Text.ToUpper()
 
+                    With cmd.Parameters
                         .AddWithValue("@fname", txtFNAME.Text)
                         .AddWithValue("@mname", txtMNAME.Text)
                         .AddWithValue("@year", cboYEAR.Text)
                         .AddWithValue("@birth", dtBIRTH.Value)
                         .AddWithValue("@cn", txtCN.Text)
+                        .AddWithValue("@email", txtEMAIL.Text) ' email case maintained
+                        .AddWithValue("@highschool", txtHS.Text.ToUpper())
+                        .AddWithValue("@college", txtCOLL.Text.ToUpper())
+                        .AddWithValue("@yeargraduate", txtYG.Text.ToUpper())
+                        .AddWithValue("@school_year", txtSY.Text.ToUpper())
                         .AddWithValue("@lname", txtLNAME.Text)
                     End With
 
                     Dim rows = cmd.ExecuteNonQuery()
                     MessageBox.Show(If(rows > 0, "Student record was updated successfully.", "No record found."), "Update", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    ' Refresh the ListView after updating a record
                     LoadStudentData()
                     ClearFields()
                 Catch ex As Exception
                     MessageBox.Show("Error: " & ex.Message)
                 End Try
             End Using
-        End Using ' Connection and command are automatically closed here
+        End Using
     End Sub
 
     Private Sub btnCL_Click(sender As Object, e As EventArgs) Handles btnCL.Click
@@ -279,20 +329,21 @@ Public Class Form1
         txtGMNAME.Clear()
         txtOCC.Clear()
         txtGNUM.Clear()
+        txtEMAIL.Clear()
+        txtHS.Clear()
+        txtCOLL.Clear()
+        txtYG.Clear()
+        txtSY.Clear()
     End Sub
 
-    ' New method to load students into ListView
     Public Sub LoadStudentData()
-        ' Clear existing items
         ListView1.Items.Clear()
 
-        ' Setup ListView columns if not already setup
         If ListView1.Columns.Count = 0 Then
             ListView1.View = View.Details
             ListView1.FullRowSelect = True
             ListView1.GridLines = True
 
-            ' Add columns to match your database fields
             ListView1.Columns.Add("Last Name", 100)
             ListView1.Columns.Add("First Name", 100)
             ListView1.Columns.Add("Middle Name", 100)
@@ -311,14 +362,18 @@ Public Class Form1
             ListView1.Columns.Add("Guardian MName", 100)
             ListView1.Columns.Add("Occupation", 100)
             ListView1.Columns.Add("Guardian Contact", 100)
+            ListView1.Columns.Add("Email", 150)
+            ListView1.Columns.Add("High School", 150)
+            ListView1.Columns.Add("College", 150)
+            ListView1.Columns.Add("Year Graduated", 100)
+            ListView1.Columns.Add("School Year", 100)
         End If
+
         Using conn As OleDbConnection = CreateConnection()
             Using cmd As New OleDbCommand("SELECT * FROM students ORDER BY lname ASC", conn)
                 Try
                     conn.Open()
                     Using reader As OleDbDataReader = cmd.ExecuteReader()
-                        ' Read data and add to ListView
-
                         While reader.Read()
                             Dim item As New ListViewItem(reader("lname").ToString())
                             item.SubItems.Add(reader("fname").ToString())
@@ -338,39 +393,36 @@ Public Class Form1
                             item.SubItems.Add(reader("g_mname").ToString())
                             item.SubItems.Add(reader("g_occupation").ToString())
                             item.SubItems.Add(reader("g_contact").ToString())
-                            ' If there's an ID field in the database, store it in the Tag property
+                            item.SubItems.Add(reader("email").ToString())
+                            item.SubItems.Add(reader("highschool").ToString())
+                            item.SubItems.Add(reader("college").ToString())
+                            item.SubItems.Add(reader("yeargraduate").ToString())
+                            item.SubItems.Add(reader("school_year").ToString())
+
                             If Not reader.IsDBNull(reader.GetOrdinal("ID")) Then
                                 item.Tag = reader("ID")
                             End If
 
                             ListView1.Items.Add(item)
                         End While
-
-                    End Using ' Reader is automatically closed here
+                    End Using
                 Catch ex As Exception
                     MessageBox.Show("Error loading student data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             End Using
-        End Using ' Connection and command are automatically closed here
-    End Sub
-
-    ' Handler for ListView selection change
-    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
-        ' Original code or leave empty if you want to handle only double-click
+        End Using
     End Sub
 
     Private Sub ListView1_DoubleClick(sender As Object, e As EventArgs) Handles ListView1.DoubleClick
         If ListView1.SelectedItems.Count > 0 Then
             Dim selectedItem As ListViewItem = ListView1.SelectedItems(0)
 
-            ' Fill the form fields with the selected student data
             txtLNAME.Text = selectedItem.SubItems(0).Text
             txtFNAME.Text = selectedItem.SubItems(1).Text
             txtMNAME.Text = selectedItem.SubItems(2).Text
             cboYEAR.Text = selectedItem.SubItems(3).Text
             cboCOURSE.Text = selectedItem.SubItems(4).Text
 
-            ' Handle date fields - ensure they're valid dates
             Dim addDate As DateTime
             Dim birthDate As DateTime
 
@@ -393,8 +445,12 @@ Public Class Form1
             txtGMNAME.Text = selectedItem.SubItems(15).Text
             txtOCC.Text = selectedItem.SubItems(16).Text
             txtGNUM.Text = selectedItem.SubItems(17).Text
+            txtEMAIL.Text = selectedItem.SubItems(18).Text
+            txtHS.Text = selectedItem.SubItems(19).Text
+            txtCOLL.Text = selectedItem.SubItems(20).Text
+            txtYG.Text = selectedItem.SubItems(21).Text
+            txtSY.Text = selectedItem.SubItems(22).Text
 
-            ' Optionally, you could also focus on a field after loading the data
             txtFNAME.Focus()
         End If
     End Sub
@@ -404,40 +460,29 @@ Public Class Form1
             Using cmd As New OleDbCommand()
                 Try
                     conn.Open()
-                    Dim query As String
+                    Dim query As String = ""
 
-                    ' Build query based on selected filter
                     If filterbycombo.SelectedIndex = 0 Then
-                        ' Last Name filter
-                        query = "SELECT * FROM students WHERE lname LIKE @search ORDER BY lname ASC"
+                        query = "SELECT * FROM students WHERE lname LIKE ? ORDER BY lname ASC"
                     ElseIf filterbycombo.SelectedIndex = 1 Then
-                        ' Course filter
-                        query = "SELECT * FROM students WHERE course LIKE @search ORDER BY lname ASC"
+                        query = "SELECT * FROM students WHERE course LIKE ? ORDER BY lname ASC"
                     ElseIf filterbycombo.SelectedIndex = 2 Then
-                        ' Year Level filter
-                        query = "SELECT * FROM students WHERE year_level LIKE @search ORDER BY lname ASC"
+                        query = "SELECT * FROM students WHERE year_level LIKE ? ORDER BY lname ASC"
                     ElseIf filterbycombo.SelectedIndex = 3 Then
-                        ' Municipality filter
-                        query = "SELECT * FROM students WHERE municipality LIKE @search ORDER BY lname ASC"
+                        query = "SELECT * FROM students WHERE municipality LIKE ? ORDER BY lname ASC"
                     Else
-                        Return ' Exit if no valid filter selected
+                        Return
                     End If
 
                     cmd.Connection = conn
                     cmd.CommandText = query
-                    ' Use parameterized query to prevent SQL injection
                     cmd.Parameters.AddWithValue("@search", "%" & searchTxtbox.Text & "%")
 
-                    ' Clear existing items
                     ListView1.Items.Clear()
 
                     Using reader As OleDbDataReader = cmd.ExecuteReader()
-                        ' Check if no records found
-                        If Not reader.HasRows Then
-                            Return ' Exit if no records found
-                        End If
+                        If Not reader.HasRows Then Return
 
-                        ' Read data and add to ListView
                         While reader.Read()
                             Dim item As New ListViewItem(reader("lname").ToString())
                             item.SubItems.Add(reader("fname").ToString())
@@ -457,26 +502,64 @@ Public Class Form1
                             item.SubItems.Add(reader("g_mname").ToString())
                             item.SubItems.Add(reader("g_occupation").ToString())
                             item.SubItems.Add(reader("g_contact").ToString())
+                            item.SubItems.Add(reader("email").ToString())
+                            item.SubItems.Add(reader("highschool").ToString())
+                            item.SubItems.Add(reader("college").ToString())
+                            item.SubItems.Add(reader("yeargraduate").ToString())
+                            item.SubItems.Add(reader("school_year").ToString())
 
-                            ' If there's an ID field in the database, store it in the Tag property
                             If Not reader.IsDBNull(reader.GetOrdinal("ID")) Then
                                 item.Tag = reader("ID")
                             End If
 
                             ListView1.Items.Add(item)
                         End While
-                    End Using ' Reader is automatically closed here
+                    End Using
                 Catch ex As Exception
                     MessageBox.Show("Error searching student data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             End Using
-        End Using ' Connection and command are automatically closed here
+        End Using
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles filterbycombo.SelectedIndexChanged
-        ' Trigger the search when filter is changed
         If searchTxtbox.Text.Trim() <> "" Then
             TextBox1_TextChanged(sender, e)
         End If
+    End Sub
+
+    ' Unused event handlers can remain empty or be removed if not needed
+    Private Sub Label25_Click(sender As Object, e As EventArgs) Handles Label25.Click
+    End Sub
+
+    Private Sub Label29_Click(sender As Object, e As EventArgs) Handles Label29.Click
+    End Sub
+
+    Private Sub Label30_Click(sender As Object, e As EventArgs) Handles Label30.Click
+    End Sub
+
+    Private Sub txtEMAIL_TextChanged(sender As Object, e As EventArgs) Handles txtEMAIL.TextChanged
+    End Sub
+
+    Private Sub sexcombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles sexcombo.SelectedIndexChanged
+    End Sub
+
+    Private Sub txtHS_TextChanged(sender As Object, e As EventArgs) Handles txtHS.TextChanged
+    End Sub
+
+    Private Sub txtCOLL_TextChanged(sender As Object, e As EventArgs) Handles txtCOLL.TextChanged
+    End Sub
+
+    Private Sub txtYG_TextChanged(sender As Object, e As EventArgs) Handles txtYG.TextChanged
+    End Sub
+
+    Private Sub txtSY_TextChanged(sender As Object, e As EventArgs) Handles txtSY.TextChanged
+    End Sub
+
+    Private Sub Label24_Click(sender As Object, e As EventArgs) Handles Label24.Click
+    End Sub
+
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+
     End Sub
 End Class
